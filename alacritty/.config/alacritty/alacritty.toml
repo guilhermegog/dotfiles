@@ -1,0 +1,40 @@
+import = [
+    "~/.config/alacritty/themes/themes/nord.toml"
+]
+[env]
+TERM = "xterm-256color"
+
+[window]
+decorations = "buttonless"
+dynamic_padding = true
+padding.x = 5
+padding.y = 2
+
+opacity = 0.7
+blur = true
+
+option_as_alt = "Both"
+
+[font]
+size = 16.0
+offset.x =0
+offset.y =0
+
+[font.bold]
+family = "JetBrainsMono Nerd Font"
+style = "Heavy"
+
+[font.bold_italic]
+family = "JetBrainsMono Nerd Font"
+style = "Heavy Italic"
+
+[font.italic]
+family = "JetBrainsMono Nerd Font"
+style = "Medium Italic"
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+style = "Medium"
+
+
+
