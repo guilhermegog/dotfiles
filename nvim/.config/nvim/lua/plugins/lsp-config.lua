@@ -20,6 +20,7 @@ return {
           "rust_analyzer",
           "verible",
           "cmake",
+          "taplo",
         },
       })
     end,
@@ -48,19 +49,18 @@ return {
       lspconfig.markdown_oxide.setup({
         capabilities = capabilities,
       })
-      lspconfig.pylsp.setup({
-        capabilities = capabilities,
-
+      require 'lspconfig'.pylsp.setup {
         settings = {
           pylsp = {
             plugins = {
-              pycodestlye = {
-                ignore = { "E501", "E265" },
-              },
-            },
-          },
-        },
-      })
+              pycodestyle = {
+                ignore = { 'W391' },
+                maxLineLength = 100
+              }
+            }
+          }
+        }
+      }
       lspconfig.rust_analyzer.setup({
         capabilities = capabilities,
       })
@@ -68,6 +68,9 @@ return {
         capabilities = capabilities,
       })
       lspconfig.cmake.setup({
+        capabilities = capabilities,
+      })
+      lspconfig.taplo.setup({
         capabilities = capabilities,
       })
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
