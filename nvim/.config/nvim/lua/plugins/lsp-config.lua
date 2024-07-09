@@ -74,9 +74,11 @@ return {
         capabilities = capabilities,
       })
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-      vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})
-      vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
-      vim.keymap.set("n", "gr", vim.lsp.buf.references, {})
+      vim.keymap.set("n", "gD", '<cmd>Telescope lsp_type_definitions<CR>', {})
+      vim.keymap.set("n", "gd", '<cmd>Telescope lsp_definitions<CR>', {})
+      vim.keymap.set("n", "gr", '<cmd>Telescope lsp_references<CR>', {})
+      vim.keymap.set('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', {})
+      vim.keymap.set('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', {})
       vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
     end,
   },
