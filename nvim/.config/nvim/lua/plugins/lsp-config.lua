@@ -77,8 +77,23 @@ return {
       vim.keymap.set("n", "gD", '<cmd>Telescope lsp_type_definitions<CR>', {})
       vim.keymap.set("n", "gd", '<cmd>Telescope lsp_definitions<CR>', {})
       vim.keymap.set("n", "gr", '<cmd>Telescope lsp_references<CR>', {})
-      vim.keymap.set('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', {})
-      vim.keymap.set('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', {})
+      vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, {})
+      vim.keymap.set('n', ']d', vim.diagnostic.goto_next, {})
+      vim.keymap.set('n', '<leader>e', function()
+        -- If we find a floating window, close it.
+        local found_float = false
+        for _, win in ipairs(vim.api.nvim_list_wins()) do
+          if vim.api.nvim_win_get_config(win).relative ~= '' then
+            vim.api.nvim_win_close(win, true)
+            found_float = true
+          end
+        end
+        if found_float then
+          return
+        end
+
+        vim.diagnostic.open_float(nil, { focus = false, scope = 'cursor' })
+      end, { desc = 'Toggle Diagnostics' })
       vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
     end,
   },

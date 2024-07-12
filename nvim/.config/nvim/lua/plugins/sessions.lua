@@ -9,6 +9,7 @@ return {
         load_on_setup = true,
         theme_conf = { border = true },
         previewer = false,
+        pos_restore_cmds = {"Neotree"}
       },
       vim.keymap.set("n", "<Leader>ls", require("auto-session.session-lens").search_session, {
         noremap = true,
