@@ -50,15 +50,19 @@ return {
         capabilities = capabilities,
       })
       require 'lspconfig'.pylsp.setup {
+        pylsp = {
         settings = {
           pylsp = {
             plugins = {
+              pylint = {args = {'--ignore=E501,E231', '-'}, enabled=true, debounce=200},
               pycodestyle = {
-                ignore = { 'W391' },
-                maxLineLength = 100
+                enabled = false,
+                ignore = { 'W391', 'E501', 'E231' },
+                maxLineLength = 120
               }
             }
           }
+        }
         }
       }
       lspconfig.rust_analyzer.setup({
